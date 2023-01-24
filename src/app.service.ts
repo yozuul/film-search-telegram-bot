@@ -108,10 +108,10 @@ export class AppService {
       }
       for (let user of users) {
          try {
-            this.bot.telegram.sendMessage(user.tgId, text)
+            await this.bot.telegram.sendMessage(user.tgId, text)
          } catch (error) {
-            this.userService.deleteUser(user.tgId)
-            console.log(error)
+            await this.userService.deleteUser(user.tgId)
+            return
          }
       }
       ctx.session.path = 'home'
